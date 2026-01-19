@@ -1,93 +1,100 @@
 import React from "react";
-import "./App.css";
+import "./App.css"; // keep your existing css or update it below
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#2e2f36] flex flex-col items-center justify-center">
-      
-      {/* Header */}
-      <div className="text-center text-white mb-4">
-        <p className="text-sm">Paying to</p>
-        <p className="text-orange-500 font-semibold">homefood</p>
+    <div className="min-h-screen bg-[#2e2f36] flex flex-col items-center pt-10 pb-20 px-4">
+      {/* Top Paying to */}
+      <div className="text-center text-white mb-6">
+        <p className="text-sm opacity-80">Paying to</p>
+        <p className="text-xl font-semibold text-orange-500">homefood</p>
       </div>
 
-      {/* Order Card */}
-      <div className="bg-white rounded-2xl shadow-lg w-[360px] p-4 z-10">
-        <h2 className="font-bold text-xl">Hi Prasad Naik,</h2>
-        <p className="text-gray-500 text-sm mb-2">9999999999</p>
+      {/* Main white card - Order details */}
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-[380px] p-5 z-10">
+        <h2 className="font-bold text-xl mb-1">Hi Prasad Naik,</h2>
+        <p className="text-gray-500 text-sm mb-4">9999999999</p>
 
-        <hr className="my-3" />
-
-        <div className="flex justify-between text-sm text-gray-500">
-          <p>Order Order12312 orderNumber</p>
-          <span className="text-blue-500 cursor-pointer">View order</span>
-        </div>
-
-        <div className="mt-4 space-y-2 text-sm">
-          <div className="flex justify-between">
-            <span>Order Value</span>
-            <span>₹5,00,000.00</span>
+        <div className="space-y-4 text-sm">
+          {/* Order 1 */}
+          <div>
+            <div className="flex justify-between items-center text-gray-600 mb-1">
+              <p>Order Order12312 orderNumber</p>
+              <span className="text-blue-600 cursor-pointer hover:underline">View order</span>
+            </div>
+            <div className="flex justify-between font-medium">
+              <span>Order Value</span>
+              <span>₹5,00,000.00</span>
+            </div>
           </div>
-          <div className="flex justify-between">
-            <span>Discount</span>
-            <span>₹2,000.00</span>
+
+          {/* Order 2 (matching your screenshot having two) */}
+          <div>
+            <div className="flex justify-between items-center text-gray-600 mb-1">
+              <p>Order Order1231312 orderNumber</p>
+              <span className="text-blue-600 cursor-pointer hover:underline">View order</span>
+            </div>
+            <div className="flex justify-between font-medium">
+              <span>Order Value</span>
+              <span>₹5,000.00</span>
+            </div>
           </div>
-        </div>
 
-        <div className="bg-orange-100 text-orange-600 text-xs px-3 py-1 rounded-full w-fit mt-3">
-          Total saving of 0.4% on this order
-        </div>
+          <hr className="my-3 border-gray-200" />
 
-        <hr className="my-3" />
+          <div className="flex justify-between text-base">
+            <span className="font-medium">Discount</span>
+            <span className="text-green-600">₹2,000.00</span>
+          </div>
 
-        <div className="flex justify-between font-bold">
-          <span>Payable Amount</span>
-          <span>₹4,98,000.00</span>
+          <div className="inline-block bg-orange-50 text-orange-700 text-xs font-medium px-3 py-1 rounded-full mt-1">
+            <span role="img" aria-label="rocket">🚀</span> Total saving of 0.4% on this order
+          </div>
+
+          <hr className="my-4 border-gray-200" />
+
+          <div className="flex justify-between text-lg font-bold">
+            <span>Payable Amount</span>
+            <span>₹4,98,000.00</span>
+          </div>
         </div>
       </div>
 
-      {/* Payment Section */}
-      <div className="bg-[#fff8ed] w-[360px] rounded-2xl p-4 -mt-6">
-        <p className="font-medium mb-3">Select Payment Method</p>
+      {/* Payment methods section - light bg, overlaps upward a bit */}
+      <div className="bg-[#fff8ed] w-full max-w-[380px] rounded-2xl p-5 -mt-10 z-0 shadow-md">
+        <p className="font-semibold text-gray-800 mb-4">Select Payment Method</p>
 
-        {/* UPI OPEN */}
-        <div className="border-2 border-orange-500 rounded-xl p-4 mb-4">
-          <div className="flex items-center gap-3 mb-3">
-            <img src="/upi.png" alt="upi" className="w-7" />
-            <span className="font-medium">UPI</span>
-          </div>
-
-          <input
-            placeholder="Enter UPI Id"
-            className="w-full border rounded-md px-3 py-2 text-sm"
+        <div className="space-y-3">
+          <PaymentOption 
+            icon="https://img.icons8.com/color/48/000000/google-pay.png" 
+            label="UPI" 
+            isActive={true} // can make orange border if selected
           />
 
-          <p className="text-red-500 text-xs mt-1">
-            Could not verify your UPI Id. Please try again.
-          </p>
+          <PaymentOption 
+            icon="https://img.icons8.com/color/48/000000/wallet.png" 
+            label="Wallet" 
+          />
 
-          <button className="w-full mt-3 bg-orange-500 text-white py-2 rounded-md text-sm">
-            Verify
-          </button>
+          <PaymentOption 
+            icon="https://img.icons8.com/color/48/000000/credit-card.png" 
+            label="Debit / Credit Card" 
+          />
+
+          <PaymentOption 
+            icon="https://img.icons8.com/color/48/000000/bank-building.png" 
+            label="Net Banking" 
+          />
         </div>
 
-        {/* Wallet */}
-        <PaymentOption icon="/wallet.png" label="Wallet" />
-
-        {/* Card */}
-        <PaymentOption icon="/card.png" label="Debit / Credit Card" />
-
-        {/* Netbanking */}
-        <PaymentOption icon="/bank.png" label="Net Banking" />
-
-        <p className="text-center text-xs mt-6 text-gray-500">
-          Powered by <span className="font-bold">SWIFT</span>PAY
+        <p className="text-center text-xs text-gray-500 mt-8">
+          Powered by <span className="font-bold text-gray-700">SWIFT</span>PAY
         </p>
       </div>
 
-      {/* Bottom Button */}
-      <div className="w-[360px] mt-4">
-        <button className="w-full bg-gray-500 text-white py-3 rounded-lg font-medium">
+      {/* Bottom CTA */}
+      <div className="w-full max-w-[380px] mt-8">
+        <button className="w-full bg-gray-600 hover:bg-gray-700 text-white py-3.5 rounded-xl font-semibold text-base shadow-md transition">
           PROCEED TO PAY
         </button>
       </div>
@@ -95,14 +102,19 @@ export default function App() {
   );
 }
 
-function PaymentOption({ icon, label }) {
+function PaymentOption({ icon, label, isActive = false }) {
   return (
-    <div className="flex items-center justify-between p-4 border rounded-xl mb-3 bg-white cursor-pointer hover:bg-gray-50">
+    <div 
+      className={`flex items-center justify-between p-4 border rounded-xl cursor-pointer transition
+        ${isActive 
+          ? "border-orange-500 bg-orange-50/30" 
+          : "border-gray-200 hover:border-gray-300 bg-white"}`}
+    >
       <div className="flex items-center gap-3">
-        <img src={icon} alt={label} className="w-7" />
-        <span className="font-medium">{label}</span>
+        <img src={icon} alt={label} className="w-8 h-8" />
+        <span className="font-medium text-gray-800">{label}</span>
       </div>
-      <span className="text-gray-400">⌄</span>
+      <span className="text-gray-400 text-xl">⌄</span>
     </div>
   );
 }
